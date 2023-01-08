@@ -6,9 +6,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: none;
+
   }
 
   body {
+    font-family: 'Inter', sans-serif;
     color: ${({ theme }) => theme.colors['gray-900']};
     -webkit-font-smoothing: antialiased;
   }
