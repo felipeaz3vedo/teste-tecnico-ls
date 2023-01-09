@@ -19,7 +19,7 @@ export const HeaderWrap = styled.div<HeaderWrapProps>`
   padding-inline: 1rem;
   justify-content: space-between;
   margin-inline: auto;
-  max-width: 1300px;
+  max-width: 81.25rem;
 
   ${({ isLoged }) =>
     isLoged === false &&
@@ -29,8 +29,8 @@ export const HeaderWrap = styled.div<HeaderWrapProps>`
 `;
 
 export const UserImage = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 
   background-color: black;
 
