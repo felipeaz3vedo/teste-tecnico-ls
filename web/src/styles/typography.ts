@@ -14,7 +14,7 @@ interface TextProps {
   lineHeight?: '110' | '150';
 }
 
-export const Heading = styled.h1<HeadingProps>`
+export const Heading = styled.h2<HeadingProps>`
   color: ${({ theme, color }) => theme.colors[`${color ?? 'gray-900'}`]};
   font-size: ${({ theme, size }) => theme.fontSizes[`${size ?? 'l'}`]};
   line-height: ${({ lineHeight }) => `${lineHeight ?? '150'}%`};
