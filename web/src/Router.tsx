@@ -6,9 +6,9 @@ import { Login } from './pages/Login';
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route element={<Layout />}>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route index path="/home" element={<Home />} />
       </Route>
     </Routes>
   );

@@ -1,4 +1,5 @@
 import { PencilSimple, TrashSimple } from 'phosphor-react';
+import { products } from '../../data/products';
 import { Heading } from '../../styles/typography';
 import { DeleteModal } from '../Modal/DeleteModal';
 import { EditModal } from '../Modal/EditModal';
@@ -49,49 +50,51 @@ export function Table() {
         </thead>
 
         <tbody>
-          <tr>
-            <td>
-              <Heading size="xs" weight="500" as="h3">
-                1
-              </Heading>
-            </td>
-            <td>
-              <Heading size="xs" weight="500" as="h3">
-                Televisão
-              </Heading>
-            </td>
-            <td>
-              <Heading size="xs" weight="500" as="h3">
-                sim
-              </Heading>
-            </td>
-            <td>
-              <Heading size="xs" weight="500" as="h3">
-                2530.99
-              </Heading>
-            </td>
-            <td>
-              <Heading size="xs" weight="500" as="h3">
-                3405
-              </Heading>
-            </td>
-            <td>
-              <Heading size="xs" weight="500" as="h3">
-                09/12/2023
-              </Heading>
-            </td>
-            <td colSpan={2}>
-              <div>
-                <EditModal>
-                  <PencilSimple weight="fill" size={18} />
-                </EditModal>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>
+                <Heading size="xs" weight="500" as="h3">
+                  {product.id}
+                </Heading>
+              </td>
+              <td>
+                <Heading size="xs" weight="500" as="h3">
+                  {product.name}
+                </Heading>
+              </td>
+              <td>
+                <Heading size="xs" weight="500" as="h3">
+                  {product.stock}
+                </Heading>
+              </td>
+              <td>
+                <Heading size="xs" weight="500" as="h3">
+                  {product.price}
+                </Heading>
+              </td>
+              <td>
+                <Heading size="xs" weight="500" as="h3">
+                  {product.quantity}
+                </Heading>
+              </td>
+              <td>
+                <Heading size="xs" weight="500" as="h3">
+                  {product.lastUpdate}
+                </Heading>
+              </td>
+              <td colSpan={2}>
+                <div>
+                  <EditModal>
+                    <PencilSimple weight="fill" size={18} />
+                  </EditModal>
 
-                <DeleteModal>
-                  <TrashSimple weight="fill" size={18} />
-                </DeleteModal>
-              </div>
-            </td>
-          </tr>
+                  <DeleteModal>
+                    <TrashSimple weight="fill" size={18} />
+                  </DeleteModal>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </TableContainer>

@@ -31,7 +31,7 @@ export const ModalContent = styled(Dialog.Content)`
   overflow: hidden;
 
   > p {
-    margin-inline: 1.25rem;
+    margin: 0 1.25rem 1.5rem 1.25rem;
   }
 
   > div {

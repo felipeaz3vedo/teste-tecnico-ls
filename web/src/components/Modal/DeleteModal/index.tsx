@@ -23,7 +23,7 @@ export function DeleteModal({ children }: DeleteModalProps) {
             </Heading>
           </ModalTitle>
 
-          <Text weight="400">Tem certeza que quer deletar este produto do banco de dados?</Text>
+          <Text weight="500">Tem certeza que quer deletar este produto do banco de dados?</Text>
 
           <div>
             <ModalClose>

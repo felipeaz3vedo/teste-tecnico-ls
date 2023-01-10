@@ -21,14 +21,3 @@ export const HomeHeader = styled.header`
     gap: 0.375rem;
   }
 `;
-
-export const ProductsCount = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.125rem 0.375rem;
-
-  background-color: ${({ theme }) => theme.colors['purple-100']};
-
-  border-radius: 0.25rem;
-`;
