@@ -5,7 +5,8 @@ import express from 'express';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
 import cors from 'cors';
-import { authRoutes } from './routes/auth';
+import { authRoutes } from './routes/auth.routes';
+import { productRoutes } from './routes/products.routes';
 
 const passporportSetup = require('./strategies/google-strategy');
 
@@ -33,5 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoutes);
+app.use(productRoutes);
+// app.use(userRoutes);
 
 app.listen('3333');

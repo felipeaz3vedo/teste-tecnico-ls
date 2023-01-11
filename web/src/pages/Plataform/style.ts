@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HomeContainer = styled.section`
+export const PlataformContainer = styled.section`
   max-width: 81.25rem;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@ export const HomeContainer = styled.section`
   padding-inline: 1rem;
 `;
 
-export const HomeHeader = styled.header`
+export const PlataformHeader = styled.header`
   flex: 1;
   display: flex;
   justify-content: space-between;

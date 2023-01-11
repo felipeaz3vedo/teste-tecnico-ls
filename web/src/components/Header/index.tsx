@@ -7,8 +7,8 @@ import { GoogleLogo, SignOut } from 'phosphor-react';
 export function Header() {
   const { userData } = useUserData();
 
-  function handleLogin() {
-    window.open('http://localhost:3333/auth/google', '_self');
+  async function handleLogin() {
+    window.open('http://localhost:3333/auth/google/login', '_self');
   }
 
   function handleLogout() {

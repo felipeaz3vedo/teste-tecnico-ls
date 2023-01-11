@@ -1,15 +1,13 @@
-import { Plus } from 'phosphor-react';
 import { useEffect } from 'react';
-import { Button } from '../../components/Button';
-import { AddModal } from '../../components/Modal/AddModal';
-import { Table } from '../../components/Table';
+import { useNavigate } from 'react-router-dom';
 import { useUserData } from '../../hooks/useUserData';
 import api from '../../services/api';
-import { Heading, Text } from '../../styles/typography';
-import { HomeContainer, HomeHeader } from './style';
+import { Heading } from '../../styles/typography';
 
 export function Home() {
-  const { setUserData } = useUserData();
+  const { userData, setUserData } = useUserData();
+
+  const navigate = useNavigate();
 
   async function getData() {
     await api
@@ -18,8 +16,8 @@ export function Home() {
       })
       .then((response) => {
         setUserData({
-          name: response.data.user.displayName,
-          email: response.data.user.emails[0].value,
+          name: response.data.user.name,
+          email: response.data.user.email,
         });
       })
       .catch((error) => console.log(error));
@@ -29,26 +27,11 @@ export function Home() {
     getData();
   }, []);
 
+  userData && navigate('/plataform');
+
   return (
-    <HomeContainer>
-      <HomeHeader>
-        <div>
-          <Heading size="l" as="h1">
-            Produtos
-          </Heading>
-        </div>
-        <Button>
-          <AddModal>
-            <Text size="xs" weight="700">
-              Adicionar Produto
-            </Text>
-          </AddModal>
-
-          <Plus size={16} weight="bold" />
-        </Button>
-      </HomeHeader>
-
-      <Table />
-    </HomeContainer>
+    <>
+      <Heading>HomePage</Heading>
+    </>
   );
 }

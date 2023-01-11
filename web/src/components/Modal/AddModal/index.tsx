@@ -45,6 +45,7 @@ export function AddModal({ children }: AddModalProps) {
                 </label>
                 <input name="name" type="number" placeholder="Insira o preço" />
               </NumericField>
+
               <NumericField>
                 <label htmlFor="name">
                   Quantidade <span>*</span>
