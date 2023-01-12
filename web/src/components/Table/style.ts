@@ -5,7 +5,7 @@ export const TableContainer = styled.div`
 
   table {
     flex: 1;
-    min-width: 37.5rem;
+    min-width: 700px;
     overflow: auto;
 
     border-collapse: collapse;
@@ -33,8 +33,13 @@ export const TableContainer = styled.div`
     text-transform: uppercase;
   }
 
+  td:first-child {
+    min-width: 260px;
+    white-space: nowrap;
+  }
+
   td:nth-child(2) {
-    min-width: 18.75rem;
+    min-width: 200px;
     white-space: nowrap;
   }
 

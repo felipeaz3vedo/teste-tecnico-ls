@@ -1,22 +1,38 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
+import { Text } from '../../../styles/typography';
 
 export const ModalOpenButton = styled(Dialog.Trigger)`
   background-color: transparent;
 `;
 
-export const ModalOverlay = styled(Dialog.Overlay)`
+interface ModalOverlayProps {
+  isOpen: boolean;
+}
+
+export const ModalOverlay = styled(Dialog.Overlay)<ModalOverlayProps>`
   position: fixed;
+  display: none;
   inset: 0;
 
   background-color: #0000001a;
+
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      display: block;
+    `}
 `;
 
-export const ModalContent = styled(Dialog.Content)`
+interface ModalContentProps {
+  isOpen: boolean;
+}
+
+export const ModalContent = styled(Dialog.Content)<ModalContentProps>`
   position: fixed;
   top: 50%;
   left: 50%;
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 90vw;
   max-width: 28.125rem;
@@ -30,21 +46,14 @@ export const ModalContent = styled(Dialog.Content)`
   transform: translate(-50%, -50%);
   overflow: hidden;
 
-  > div {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    margin-top: 1.5rem;
-
-    background-color: white;
-
-    border-top: 1px solid ${({ theme }) => theme.colors['gray-200']};
-  }
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      display: flex;
+    `}
 `;
 
-export const ModalTitle = styled(Dialog.Title)`
+export const ModalHeader = styled(Dialog.Title)`
   padding: 1rem 1.25rem;
   margin-bottom: 1rem;
 
@@ -54,10 +63,13 @@ export const ModalTitle = styled(Dialog.Title)`
 `;
 
 export const ModalClose = styled(Dialog.Close)`
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
   background-color: transparent;
 `;
 
-export const AddForm = styled.form`
+export const InputArea = styled.form`
   display: flex;
   flex-direction: column;
   padding-inline: 1rem;
@@ -70,16 +82,11 @@ export const AddForm = styled.form`
     line-height: 150%;
     letter-spacing: 1%;
     color: ${({ theme }) => theme.colors['gray-700']};
-
-    > span {
-      color: ${({ theme }) => theme.colors['red-800']};
-    }
   }
 
   input {
     border: none;
     padding: 0.375rem 0.5rem;
-    margin-bottom: 1rem;
 
     font-size: 0.875rem;
     line-height: 150%;
@@ -106,8 +113,33 @@ export const NumericFieldsContainer = styled.div`
   gap: 2rem;
 `;
 
+export const TextInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`;
+
 export const NumericField = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
   max-width: 9.375rem;
+`;
+
+export const SubmitArea = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+
+  background-color: white;
+
+  border-top: 1px solid ${({ theme }) => theme.colors['gray-200']};
+`;
+
+export const ErrorMessage = styled(Text)`
+  padding: 4px;
+  color: ${({ theme }) => theme.colors['red-800']};
 `;

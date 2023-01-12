@@ -1,75 +1,145 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { Heading, Text } from '../../../styles/typography';
-import { Button } from '../../Button';
 import {
   ModalOverlay,
   ModalContent,
   ModalOpenButton,
-  ModalTitle,
-  AddForm,
+  ModalHeader,
   NumericFieldsContainer,
   NumericField,
   ModalClose,
+  SubmitArea,
+  ErrorMessage,
+  InputArea,
+  TextInput,
 } from './style';
+import { useForm } from 'react-hook-form';
+import * as zod from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { X } from 'phosphor-react';
+import { Button } from '../../Button';
+import api from '../../../services/api';
+import { useUserData } from '../../../hooks/useUserData';
 
 interface AddModalProps {
   children?: ReactNode;
 }
 
+const addFormSchema = zod.object({
+  name: zod.string().min(1, 'Campo obrigatório'),
+  price: zod.string().min(1, 'Campo obrigatório'),
+  quantity: zod.string().min(1, 'Campo obrigatório'),
+});
+
+export type AddFormValues = zod.infer<typeof addFormSchema>;
+
 export function AddModal({ children }: AddModalProps) {
+  const { userData, products, setProducts } = useUserData();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<AddFormValues>({
+    resolver: zodResolver(addFormSchema),
+  });
+
+  const onFormSubmit = async (data: AddFormValues) => {
+    const formatedData = {
+      name: data.name,
+      price: Number(data.price),
+      quantity: Number(data.quantity),
+    };
+
+    await api
+      .post(`/product/user/${userData?.id}`, formatedData, {
+        withCredentials: true,
+      })
+      .then(({ data }) => {
+        const newProduct = {
+          id: data.id,
+          name: data.name,
+          price: data.price,
+          quantity: data.quantity,
+          updatedAt: data.updatedAt,
+        };
+
+        setProducts([...products, newProduct]);
+      })
+      .catch((error) => console.log(error));
+
+    reset();
+
+    setIsOpen(false);
+  };
+
   return (
     <Dialog.Root>
-      <ModalOpenButton>{children}</ModalOpenButton>
+      <ModalOpenButton onClick={() => setIsOpen(true)}>{children}</ModalOpenButton>
 
       <Dialog.Portal>
-        <ModalOverlay />
+        <ModalOverlay isOpen={isOpen} onClick={() => setIsOpen(false)} />
 
-        <ModalContent>
-          <ModalTitle>
+        <ModalContent isOpen={isOpen}>
+          <ModalHeader>
             <Heading size="l" weight="700">
               Adicionar novo produto
             </Heading>
-          </ModalTitle>
 
-          <AddForm action="submit">
-            <label htmlFor="name">
-              Nome <span>*</span>
-            </label>
-            <input name="name" type="text" placeholder="Insira o nome do produto" />
+            <ModalClose onClick={() => setIsOpen(false)} asChild>
+              <X weight="bold" size={16} width={32} />
+            </ModalClose>
+          </ModalHeader>
 
-            <NumericFieldsContainer>
-              <NumericField>
-                <label htmlFor="name">
-                  Preço <span>*</span>
-                </label>
-                <input name="name" type="number" placeholder="Insira o preço" />
-              </NumericField>
+          <form onSubmit={handleSubmit(onFormSubmit)}>
+            <InputArea>
+              <TextInput>
+                <label htmlFor="name">Nome</label>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Insira o nome do produto"
+                  {...register('name')}
+                />
+                <ErrorMessage>{errors.name?.message}</ErrorMessage>
+              </TextInput>
 
-              <NumericField>
-                <label htmlFor="name">
-                  Quantidade <span>*</span>
-                </label>
-                <input name="name" type="number" placeholder="Insira a quantidade" />
-              </NumericField>
-            </NumericFieldsContainer>
-          </AddForm>
+              <NumericFieldsContainer>
+                <NumericField>
+                  <label htmlFor="price">Preço</label>
+                  <input
+                    id="price"
+                    type="number"
+                    placeholder="Insira o preço"
+                    {...register('price')}
+                  />
+                  <ErrorMessage>{errors.price?.message}</ErrorMessage>
+                </NumericField>
 
-          <div>
-            <ModalClose>
-              <Button variant="outline" color="gray-700">
+                <NumericField>
+                  <label htmlFor="quantity">Quantidade</label>
+                  <input
+                    id="quantity"
+                    type="number"
+                    placeholder="Insira a quantidade"
+                    {...register('quantity')}
+                  />
+                  <ErrorMessage>{errors.quantity?.message}</ErrorMessage>
+                </NumericField>
+              </NumericFieldsContainer>
+            </InputArea>
+
+            <SubmitArea>
+              <Button type={'submit'}>
                 <Text size="xs" weight="700">
-                  Cancelar
+                  Confirmar
                 </Text>
               </Button>
-            </ModalClose>
-
-            <Button>
-              <Text size="xs" weight="700">
-                Adicionar
-              </Text>
-            </Button>
-          </div>
+            </SubmitArea>
+          </form>
         </ModalContent>
       </Dialog.Portal>
     </Dialog.Root>

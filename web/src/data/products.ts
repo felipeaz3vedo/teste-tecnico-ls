@@ -1,20 +1,25 @@
+import { formatDate } from '../utils/formatDate';
+import { formatMoney } from '../utils/formatMoney';
+
 const date = new Date();
 
 export const products = [
   {
-    id: '1',
-    name: 'Televisão',
+    id: '10f7e242-b254-4796-811c-10fbf0ef3b5e',
+    name: 'Televisão Samsung 40 polegadas FHD',
     stock: 'sim',
-    price: '1400.00',
+    price: formatMoney(1400),
     quantity: '2345',
-    lastUpdate: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    createdBy: 'Felipe Azevedo',
+    lastUpdate: formatDate(date),
   },
   {
-    id: '2',
+    id: '10f7e241-b254-4796-811c-10fbf0ef3b5e',
     name: 'Ventilador',
     stock: 'sim',
-    price: '120.00',
+    price: formatMoney(120.0),
     quantity: '1200',
-    lastUpdate: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    createdBy: 'Heitor Azevedo',
+    lastUpdate: formatDate(date),
   },
 ];

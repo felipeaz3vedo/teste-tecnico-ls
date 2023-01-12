@@ -7,7 +7,9 @@ interface ButtonContainerProps {
   color?: 'purple-600' | 'red-800' | 'gray-700';
 }
 
-export const ButtonContainer = styled.button<ButtonContainerProps>`
+export const ButtonContainer = styled.button.attrs(({ type }) => ({
+  type: type || 'button',
+}))<ButtonContainerProps>`
   display: flex;
   align-items: center;
   height: 2rem;
@@ -27,6 +29,10 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   &:hover {
     background-color: ${({ theme, color }) =>
       color === 'red-800' ? theme.colors['red-900'] : theme.colors['purple-700']};
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 
   ${({ variant, color }) =>

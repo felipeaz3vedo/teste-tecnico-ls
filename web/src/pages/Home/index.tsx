@@ -1,37 +1,21 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserData } from '../../hooks/useUserData';
-import api from '../../services/api';
 import { Heading } from '../../styles/typography';
+import { HomeContainer } from './style';
 
 export function Home() {
-  const { userData, setUserData } = useUserData();
+  const { userData } = useUserData();
 
   const navigate = useNavigate();
 
-  async function getData() {
-    await api
-      .get('/auth/login/success', {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setUserData({
-          name: response.data.user.name,
-          email: response.data.user.email,
-        });
-      })
-      .catch((error) => console.log(error));
-  }
-
   useEffect(() => {
-    getData();
-  }, []);
-
-  userData && navigate('/plataform');
+    userData && navigate('/plataform');
+  }, [userData]);
 
   return (
-    <>
+    <HomeContainer>
       <Heading>HomePage</Heading>
-    </>
+    </HomeContainer>
   );
 }

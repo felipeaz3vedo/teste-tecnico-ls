@@ -4,22 +4,17 @@ import passport from 'passport';
 
 const authRoutes = Router();
 
-const successURL = 'http://localhost:5173/plataform';
 const rootURL = 'http://localhost:5173';
 
-authRoutes.get(
-  '/login/success',
-  ensureLoggedIn('http://localhost:5173/'),
-  (req, res) => {
-    if (req.user) {
-      res.status(200).json({
-        success: true,
-        message: 'successfull',
-        user: req.user,
-      });
-    }
+authRoutes.get('/login/success', ensureLoggedIn(rootURL), (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: 'successfull',
+      user: req.user,
+    });
   }
-);
+});
 
 authRoutes.get('/login/failed', (req, res) => {
   res.status(401).json({
@@ -30,10 +25,12 @@ authRoutes.get('/login/failed', (req, res) => {
 
 authRoutes.get('/google/login', passport.authenticate('google'));
 
+// Redireciono para a mesma página('/') para deixar a
+// resposabilidade dos redirecionamentos a cargo do front
 authRoutes.get(
   '/google/callback',
   passport.authenticate('google', {
-    successRedirect: successURL,
+    successRedirect: rootURL,
     failureRedirect: '/login/failed',
   })
 );

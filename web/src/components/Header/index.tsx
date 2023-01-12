@@ -8,11 +8,13 @@ export function Header() {
   const { userData } = useUserData();
 
   async function handleLogin() {
-    window.open('http://localhost:3333/auth/google/login', '_self');
+    const googleLoginURL = 'http://localhost:3333/auth/google/login';
+    window.open(googleLoginURL, '_self');
   }
 
   function handleLogout() {
-    window.open('http://localhost:3333/auth/logout', '_self');
+    const logouURL = 'http://localhost:3333/auth/logout';
+    window.open(logouURL, '_self');
   }
 
   return (
