@@ -2,6 +2,9 @@
 
 CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite como banco de dados foi para facilitar a revisão do código sem o uso do Docker.
 
+**<a href="https://youtu.be/MR_Z2MWe7jA" target="_blank">preview do projeto no youtube</a>**
+
+
 ## Instalação
 
 ### Back-end
@@ -85,7 +88,7 @@ CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite
 
 `PUT http://localhost:3333/product/:id`
 
-`:id = id do usuário produto a ser editado`
+`:id = id do produto a ser editado`
 
 &nbsp;
 
@@ -95,4 +98,4 @@ CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite
 
 `DELETE http://localhost:3333/product/:id`
 
-`:id = id do usuário produto a ser editado`
+`:id = id do  produto a ser editado`
