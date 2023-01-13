@@ -1,11 +1,35 @@
 # TESTE TÉCNICO LS
 
+## ℹ️ Informações sobre o projeto
+
 CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite como banco de dados foi para facilitar a revisão do código sem o uso do Docker.
 
-**<a href="https://youtu.be/MR_Z2MWe7jA" target="_blank">preview do projeto no youtube</a>**
+&nbsp;
 
+▶️ **<a href="https://youtu.be/MR_Z2MWe7jA" target="_blank">preview do projeto no youtube</a>**
 
-## Instalação
+&nbsp;
+
+## 🛠️ Linguagens e tecnológias utilizadas no projeto
+
+- [Vite](https://vitejs.dev/)
+- [React](https://pt-br.reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [Radix](https://www.radix-ui.com/)
+- [Phosphor Icons](https://phosphoricons.com/)
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/pt-br/)
+- [Prisma](https://www.prisma.io/)
+- [Google Oauth2](https://developers.google.com/identity/protocols/oauth2)
+- [Passport](https://www.passportjs.org/)
+- [Axios](https://axios-http.com/ptbr/)
+
+&nbsp;
+
+## ⚙️ Instalação
 
 ### Back-end
 
@@ -21,7 +45,7 @@ CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite
 
 &nbsp;
 
-## Rodar a aplicação
+## 🚀 Rodar a aplicação
 
 ### Pré-requisitos
 
@@ -58,7 +82,7 @@ CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite
 
     yarn dev
 
-# REST API
+# 📨 REST API
 
 ## GET
 
@@ -98,4 +122,4 @@ CRUD fullstack utilizando o padrão Oauth2 de autorização. A escolha do sqlite
 
 `DELETE http://localhost:3333/product/:id`
 
-`:id = id do  produto a ser editado`
+`:id = id do  produto a ser deletado`
