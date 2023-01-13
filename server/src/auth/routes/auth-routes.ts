@@ -25,8 +25,8 @@ authRoutes.get('/login/failed', (req, res) => {
 
 authRoutes.get('/google/login', passport.authenticate('google'));
 
-// Redireciono para a mesma página('/') para deixar a
-// resposabilidade dos redirecionamentos a cargo do front
+// Redireciono para a mesma página('/') para deixar a resposabilidade
+//  dos redirecionamentos a cargo do front-end da aplicação.
 authRoutes.get(
   '/google/callback',
   passport.authenticate('google', {
